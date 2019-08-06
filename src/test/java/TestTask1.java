@@ -1,60 +1,54 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 
-public class TestTask1  {
+public class TestTask1 {
 
-    Task1 task1 ;
-    ArrayList<String> fourthOctetList = new ArrayList<>();
-    ArrayList<String> nullResult;
-    int thridOctet ;
+    private Task1 task1;
+    private ArrayList<String> fourthOctetList = new ArrayList<>();
+    private int thirdOctet;
 
 
     @Before
-    public void init(){
+    public void init() {
         fourthOctetList.add("243.175.21.4");
         fourthOctetList.add("243.175.21.5");
         fourthOctetList.add("243.175.21.6");
 
-        nullResult = null;
-
-        thridOctet = 511;
-
+        thirdOctet = 515;
     }
 
     @Test
-    public void fourthJctet(){
-        task1 = new Task1("243.175.21.3","243.175.21.7");
-        fourthOctetList.equals(task1.printAndCheckRange());
-
-        }
-
-    @Test(expected = NullPointerException.class)
-    public void emptyIp(){
-        task1 = new Task1("","243.175.21.7");
-        nullResult.equals(task1.printAndCheckRange());
-
+    public void fourthJctet() {
+        task1 = new Task1("243.175.21.3", "243.175.21.7");
+        Assert.assertTrue(fourthOctetList.equals(task1.printAndCheckRange()));
     }
 
     @Test
-    public void inversionIp(){
-        task1 = new Task1("243.175.21.7","243.175.21.3");
-        fourthOctetList.equals(task1.printAndCheckRange());
-
+    public void emptyIp() {
+        task1 = new Task1("", "243.175.21.7");
+        Assert.assertNull(task1.printAndCheckRange());
     }
 
     @Test
-    public void thirdJctet(){
-        task1 = new Task1("243.175.21.3","243.175.23.7");
-        if (thridOctet == task1.printAndCheckRange().size()) {
-
-        }
+    public void inversionIp() {
+        task1 = new Task1("243.175.21.7", "243.175.21.3");
+        Assert.assertTrue(fourthOctetList.equals(task1.printAndCheckRange()));
     }
 
     @Test
-    public void nullWork(){
-        task1 = new Task1(null,null);
-        nullResult.equals(task1.printAndCheckRange());
+    public void thirdJctet() {
+        task1 = new Task1("243.175.21.3", "243.175.23.7");
+        int cnt = task1.printAndCheckRange().size();
+        Assert.assertTrue(cnt == thirdOctet);
+    }
+
+    @Test
+    public void nullWork() {
+        task1 = new Task1(null, null);
+        Assert.assertNull(task1.printAndCheckRange());
 
     }
 }
