@@ -3,6 +3,7 @@ import javafx.util.Pair;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Scanner;
 
 public class Start {
@@ -41,6 +42,11 @@ public class Start {
         Scanner sc = new Scanner(System.in);
         System.out.println("Введиет ФИО в формете *Фамилия И.О.*");
         String fio = sc.nextLine();
-        task2.printResponse(fio);
+        List<String> numbers = task2.printResponse(fio);
+        if (numbers == null) return;
+
+        for (String element : numbers) {
+            System.out.println(element);
+        }
     }
 }

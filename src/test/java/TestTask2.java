@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,20 +22,20 @@ public class TestTask2 {
 
     @Test
     public void trueWork(){
-        trueNumbers.equals(task2.printResponse("Иванов И.И."));
+        Assert.assertTrue(trueNumbers.equals(task2.printResponse("Иванов И.И.")));
     }
-    @Test(expected = NullPointerException.class)
+    @Test
     public void nullWork(){
-        nullList.equals(task2.printResponse(null));
+        Assert.assertNull(task2.printResponse(null));
     }
-    @Test(expected = NullPointerException.class)
+    @Test
     public void emptyWork(){
-        nullList.equals(task2.printResponse(""));
+        Assert.assertNull(task2.printResponse(""));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = RuntimeException.class)
     public void wrongWork(){
-        nullList.equals(task2.printResponse("Пушенко В.Д."));
+        task2.printResponse("Пушенко В.Д.");
     }
 
 }
